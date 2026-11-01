@@ -1,0 +1,23 @@
+{
+  "name": "auth-portal-api",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {"node": ">=20"},
+  "description": "Jawaban dari Knowledge Test PT WIDYA INFORMASI NUSANTARA, REST API autentikasi dengan JWT",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sakazu01/Knowledge-Test_Ariel-Sitorus.git"
+  },
+  "keywords": [],
+  "author": "Ariel Cornelius Sitorus",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Sakazu01/Knowledge-Test_Ariel-Sitorus/issues"
+  },
+  "homepage": "https://github.com/Sakazu01/Knowledge-Test_Ariel-Sitorus#readme"
+}
