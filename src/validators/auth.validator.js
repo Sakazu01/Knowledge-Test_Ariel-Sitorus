@@ -12,4 +12,10 @@ const registerSchema = z.object({
   gender: z.enum(["male", "female"]),
 });
 
-module.exports = { registerSchema };
+const loginSchema = z.object({
+  email,
+  password: z.string().min(1),
+});
+
+
+module.exports = { registerSchema, loginSchema };
