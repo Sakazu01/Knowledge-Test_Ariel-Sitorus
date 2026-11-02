@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const prisma = require("../config/prisma");
 const env = require("../config/env");
 const ApiError = require("../utils/ApiError");
@@ -20,4 +21,20 @@ const register = async ({ name, email, password, gender }) => {
   }
 };
 
-module.exports = { register };
+const login = async ({ email, password }) => {
+  const user = await prisma.user.findUnique({ where: { email } });
+  const isMatch = user ? await bcrypt.compare(password, user.password) : false;
+
+  if (!isMatch) {
+    throw new ApiError(401, "Email atau password salah", "INVALID_CREDENTIALS");
+  }
+
+  const token = jwt.sign({ sub: user.id }, env.JWT_SECRET, {
+    algorithm: "HS256",
+    expiresIn: env.JWT_EXPIRES_IN_SECONDS,
+  });
+
+  return { token, tokenType: "Bearer", expiresIn: env.JWT_EXPIRES_IN_SECONDS };
+};
+
+module.exports = { register, login };
