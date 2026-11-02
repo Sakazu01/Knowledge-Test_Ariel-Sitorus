@@ -1,4 +1,6 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const openapi = require("./docs/openapi");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const routes = require("./routes");
 
@@ -10,6 +12,7 @@ app.get("/health", (req, res) => {
   res.json({ success: true, message: "OK" });
 });
 
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(openapi));
 app.use("/api/v1", routes);
 
 app.use(notFound);
